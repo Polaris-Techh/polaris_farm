@@ -1,12 +1,13 @@
-import React from 'react'
-import MessageList from '../components/MessageList'
+// Contact.js
+import React from 'react';
+import MessageList from '../components/MessageList';
 
 function Contact() {
   return (
-    <div>ContactUs
-        <MessageList />
+    <div>
+      <MessageList /> 
     </div>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

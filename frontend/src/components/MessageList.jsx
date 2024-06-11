@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import MessageListView from './MessageListView';
+import '../static/Form.css'; // Make sure to import the CSS
 
 function MessageList() {
     const [messageList, setMessageList] = useState([]);
@@ -54,49 +54,98 @@ function MessageList() {
     };
 
     return (
-        <div>
-            <h1>Message List</h1>
-            <div className="form">
-                <input
-                    type="text"
-                    placeholder="Name..."
-                    value={name}
-                    required    
-                    onChange={event => setName(event.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Purpose..."
-                    value={purpose}
-                    onChange={event => setPurpose(event.target.value)}
-                />
-                <input
-                    type="email"
-                    placeholder="Email..."
-                    value={email}
-                    required
-                    onChange={event => setEmail(event.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Message..."
-                    value={message}
-                    required
-                    onChange={event => setMessage(event.target.value)}
-                />
-                <button onClick={addMessageHandler}>Add Message</button>
-            </div>
-            {errors.length > 0 && (
-                <div className="error-messages">
-                    <ul>
-                        {errors.map((error, index) => (
-                            <li key={index}>{error}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-            <h1>Your Messages</h1>
-            <MessageListView messageList={messageList} />
+        <div className="container">
+            <main className="row">
+                <section className="col left">
+                    <div className="contactTitle">
+                        <h2>Get In Touch</h2>
+                        <p>Let us know what you think about this community.</p>
+                        {errors.length > 0 && (
+                        <div className="error-messages">
+                            <ul>
+                                {errors.map((error, index) => (
+                                    <li key={index}>{error}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}  
+                    </div>
+                    <div className="contactInfo">
+                        <div className="iconGroup">
+                            <div className="icon">
+                                <i className="fa-solid fa-envelope"></i>
+                            </div>
+                            <div className="details">
+                                <span className='email'>Email</span>
+                                <span>techpolaris24@gmail.com</span>
+                            </div>
+                        </div>
+                        <div className="iconGroup">
+                            <div className="icon">
+                                <i className="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div className="details">
+                                <span>Location</span>
+                                <span>Pakistan</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="socialMedia">
+                        <a href="#"><i className="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i className="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i className="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i className="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </section>
+                
+                <section className="col right">
+                    <form className="messageForm">
+                        <div className="inputGroup halfWidth">
+                            <input 
+                                type="text" 
+                                name="name" 
+                                required 
+                                value={name} 
+                                placeholder='Your Name'
+                                onChange={event => setName(event.target.value)} 
+                            />
+                        </div>
+                        <div className="inputGroup halfWidth">
+                            <input 
+                                type="email" 
+                                name="email" 
+                                required 
+                                value={email} 
+                                placeholder='Email'
+                                onChange={event => setEmail(event.target.value)} 
+                            />
+                        </div>
+                        <div className="inputGroup fullWidth">
+                            <input 
+                                type="text" 
+                                name="purpose" 
+                                required 
+                                value={purpose} 
+                                placeholder='Subject'
+                                onChange={event => setPurpose(event.target.value)} 
+                            />
+                        </div>
+                        <div className="inputGroup fullWidth">
+                            <textarea 
+                                name="message" 
+                                required 
+                                value={message} 
+                                placeholder='Say Something'
+                                onChange={event => setMessage(event.target.value)} 
+                            />
+                        </div>
+                        <div className="inputGroup fullWidth">
+                            <button type="button" onClick={addMessageHandler}>Send Message</button>
+                        </div>
+                    </form>
+                   
+                </section>
+            </main>
         </div>
     );
 }
